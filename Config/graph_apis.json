@@ -1,0 +1,126 @@
+{
+  "Get All Groups": {
+    "endpoint": "https://graph.microsoft.com/v1.0/groups",
+    "filename": "groups.json",
+    "inputs": []
+  },
+  "Get Group Members": {
+    "endpoint": "https://graph.microsoft.com/v1.0/groups/{group_id}/members",
+    "filename": "group_members.json",
+    "inputs": [
+      { "name": "group_id", "label": "Enter Group GUID" }
+    ]
+  },
+  "Get Group Owners": {
+    "endpoint": "https://graph.microsoft.com/v1.0/groups/{group_id}/owners?$select=id,userType,displayName,createdDateTime",
+    "filename": "group_owners.json",
+    "inputs": [
+      { "name": "group_id", "label": "Enter Group GUID" }
+    ]
+  },
+  "Get Group By Group Guid": {
+    "endpoint": "https://graph.microsoft.com/v1.0/groups/{group_id}",
+    "filename": "group_by_group_guid.json",
+    "inputs": [
+      { "name": "group_id", "label": "Enter Group GUID" }
+    ]
+  },
+  "Get All Users": {
+    "endpoint": "https://graph.microsoft.com/v1.0/users",
+    "filename": "users.json",
+    "inputs": []
+  },
+  "Get User By Userid": {
+    "endpoint": "https://graph.microsoft.com/v1.0/users/{user_guid}?$select=id,displayName,jobTitle,mail,preferredLanguage,userPrincipalName,manager,department,createdDateTime,postalCode,state,streetAddress,officeLocation,mobilePhone,country,accountEnabled,userType,assignedPlans",
+    "filename": "user_by_userid.json",
+    "inputs": [
+      {"name": "user_guid", "label": "Enter User GUID"}
+    ]
+  },
+  "Get User By Emailid": {
+    "endpoint": "https://graph.microsoft.com/v1.0/users/{emailid}",
+    "filename": "user_by_email.json",
+    "inputs": [
+      {"name": "emailid", "label": "Enter User EmailId"}
+    ]
+  },
+  "Get User Manager": {
+    "endpoint": "https://graph.microsoft.com/v1.0/users/{user_guid}/manager",
+    "filename": "user_manager.json",
+    "inputs": [
+      {"name": "user_guid", "label": "Enter User GUID"}
+    ]
+  },
+  "Get User Ids Only": {
+    "endpoint": "https://graph.microsoft.com/v1.0/users?$select=id",
+    "filename": "userids_only.json",
+    "inputs": []
+  },
+  "Get Call Record By Callid": {
+    "endpoint": "https://graph.microsoft.com/v1.0/communications/callRecords/{Callid}",
+    "filename": "call_record_By_Callid.json",
+    "inputs": [
+      { "name": "Callid", "label": "Enter Callid" }
+    ]
+  },
+  "Get Call Session By Callid": {
+    "endpoint": "https://graph.microsoft.com/v1.0/communications/callRecords/{Callid}/sessions?$expand=segments",
+    "filename": "call_Session_By_Callid.json",
+    "inputs": [
+      { "name": "Callid", "label": "Enter Callid" }
+    ]
+  },
+  "Get All Call Records": {
+  "method": "GET",
+  "endpoint": "https://graph.microsoft.com/v1.0/communications/callRecords",
+  "filename": "Call_records_all.json",
+  "inputs": [
+    {
+      "name": "start_date",
+      "label": "From DateTime (YYYY-MM-DDTHH:MM:SSZ)"
+    },
+    {
+      "name": "end_date",
+      "label": "To DateTime (YYYY-MM-DDTHH:MM:SSZ)"
+    }
+  ]
+},
+
+
+  "Get All PSTN Calls": {
+    "method": "GET",
+    "endpoint": "https://graph.microsoft.com/v1.0/communications/callRecords/getPstnCalls(fromDateTime={from},toDateTime={to})",
+    "filename": "pstn_calls.json",
+    "inputs": [
+      {
+        "name": "from",
+        "label": "From DateTime (YYYY-MM-DDTHH:MM:SSZ)"
+      },
+      {
+        "name": "to",
+        "label": "To DateTime (YYYY-MM-DDTHH:MM:SSZ)"
+      }
+    ]
+  },
+  "Get All Direct Calls": {
+    "method": "GET",
+    "endpoint": "https://graph.microsoft.com/beta/communications/callRecords/getDirectRoutingCalls(fromDateTime={from},toDateTime={to})",
+    "filename": "Direct_calls.json",
+    "inputs": [
+      {
+        "name": "from",
+        "label": "From DateTime (YYYY-MM-DDTHH:MM:SSZ)"
+      },
+      {
+        "name": "to",
+        "label": "To DateTime (YYYY-MM-DDTHH:MM:SSZ)"
+      }
+    ]
+  },
+  "teams_call_queues_aa": {
+    "label": "Teams Call Queues & Auto Attendants",
+    "type": "teams_powershell",
+    "auth": "delegated_refresh",
+    "description": "Fetch Teams Call Queues and Auto Attendants using delegated refresh token"
+   }
+}
