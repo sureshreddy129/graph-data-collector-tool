@@ -1,0 +1,222 @@
+# Microsoft Graph Data Collector Tool
+
+## 📌 Overview
+
+The Microsoft Graph Data Collector Tool is an enterprise-focused desktop utility built using **Python (Tkinter)** to simplify and automate the process of fetching Microsoft Graph and Microsoft Teams configuration data for multiple tenants.
+
+Traditionally, support and operations engineers were required to:
+
+* Manually connect to databases to retrieve tenant refresh tokens
+* Generate access tokens using Postman
+* Maintain separate Postman environments for each customer
+* Handle refresh token expiry manually
+* Run PowerShell scripts independently to fetch Teams Call Queues and Auto Attendants
+* Retry using different user refresh tokens when permissions failed
+
+This tool automates the **entire workflow end-to-end** in a single UI.
+
+---
+
+## 🎯 Key Objectives
+
+* Eliminate manual token generation via Postman
+* Remove dependency on multiple Postman environments
+* Automatically handle token expiry and fallback
+* Provide a unified interface for Graph and Teams data collection
+* Improve productivity of support engineers
+* Reduce operational errors and time consumption
+
+---
+
+## 🚀 Features
+
+### ✅ Multi-Platform Database Connectivity
+
+* Supports multiple regions (e.g., UK, US, AU)
+* Dynamically loads database connection configuration
+* Allows searching and selecting tenants easily
+
+### ✅ Automatic Refresh Token Handling
+
+* Fetches all active refresh tokens for selected tenant
+* Automatically retries using next token if:
+
+  * Token expired
+  * Insufficient permissions
+  * API access failure
+
+### ✅ Access Token Generation
+
+* Generates Microsoft Graph access token internally
+* Tracks token expiry
+* Prompts user for token refresh when required
+
+### ✅ Microsoft Graph API Fetching
+
+Supports multiple APIs such as:
+
+* Users
+* Groups
+* PSTN Calls
+* Call Records
+* Call Sessions
+* User lookup APIs
+
+Capabilities:
+
+* Pagination handling
+* Date filter support
+* Collection and single object APIs
+* JSON output generation per tenant
+
+### ✅ Microsoft Teams Data Fetching
+
+* Automatically generates delegated Graph & Teams tokens
+* Executes PowerShell module internally
+* Fetches:
+
+  * Call Queues
+  * Auto Attendants
+
+### ✅ Intelligent Token Fallback Logic
+
+If one refresh token fails due to permissions:
+
+* Tool automatically tries next available token
+* Continues until successful or all tokens exhausted
+
+### ✅ Responsive UI with Progress Tracking
+
+* Real-time progress messages
+* Cancel operation support
+* Safe thread-based execution
+* Clear status feedback to user
+
+### ✅ Logging
+
+* Detailed execution logs stored locally
+* Useful for debugging and audit tracking
+
+### ✅ Output Management
+
+* Data stored in structured tenant-wise folders
+* JSON formatted results
+
+### ✅ EXE Distribution Ready
+
+* Tool packaged as standalone Windows executable
+* No Python installation required for end users
+
+---
+
+## 🧠 How This Tool Improves Previous Workflow
+
+### ❌ Previous Manual Process
+
+1. Connect to DB manually
+2. Fetch refresh token
+3. Open Postman
+4. Configure tenant environment
+5. Generate access token
+6. Run API manually
+7. If token expired → repeat entire process
+8. Run PowerShell separately for Teams data
+9. Retry using another user token if permission error
+
+### ✅ Automated Workflow Using This Tool
+
+1. Select platform
+2. Search and select tenant
+3. Tool fetches refresh tokens automatically
+4. Tool generates access token internally
+5. User selects required APIs
+6. Tool fetches Graph and Teams data
+7. Handles pagination and retries automatically
+8. Falls back to next token if required
+9. Saves output locally
+
+---
+
+## 🛠️ Installation
+
+### Option 1 — Using EXE (Recommended)
+
+1. Download release package
+2. Extract ZIP
+3. Update config files
+4. Run `main.exe`
+
+### Option 2 — Run from Source
+
+```bash
+pip install -r requirements.txt
+python main.py
+```
+
+---
+
+## ⚙️ Configuration
+
+Before running the tool:
+
+1. Copy template config files:
+
+```
+Config/client_secrets.template.json → client_secrets.json
+Config/db_connection.template.json → db_connection.json
+```
+
+2. Update with real credentials.
+
+---
+
+## 📂 Project Architecture
+
+```
+API/
+UI/
+core/
+DB/
+utils/
+Config/
+PowerShell/
+```
+
+Modular design ensures:
+
+* Easy maintainability
+* Scalability
+* Separation of concerns
+
+---
+
+## 📸 Screenshots
+
+
+
+
+
+---
+
+## 🔮 Future Enhancements
+
+* Retry logic with exponential backoff
+* Data export to Excel
+* API scheduling capability
+* Role-based authentication
+* Web-based dashboard version
+* Docker containerization
+
+---
+
+## 👨‍💻 Author
+
+Suresh Kumar Reddy
+Technical Delivery Engineer | Python Developer | DevOps Learner
+
+---
+
+## ⭐ Contribution
+
+Suggestions and improvements are welcome.
+Please raise issues or submit pull requests.
