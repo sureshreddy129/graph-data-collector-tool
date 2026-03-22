@@ -1,0 +1,15 @@
+{
+  "Platforms": ["UK", "US", "AU"],
+
+  "UK": {
+    "conn_str": "DRIVER={ODBC Driver 17 for SQL Server};SERVER=SERVER_NAME;DATABASE=DB_NAME;UID=USERNAME;PWD=PASSWORD"
+  },
+
+  "US": {
+    "conn_str": "DRIVER={ODBC Driver 17 for SQL Server};SERVER=SERVER_NAME;DATABASE=DB_NAME;UID=USERNAME;PWD=PASSWORD"
+  },
+
+  "AU": {
+    "conn_str": "DRIVER={ODBC Driver 17 for SQL Server};SERVER=SERVER_NAME;DATABASE=DB_NAME;UID=USERNAME;PWD=PASSWORD"
+  }
+}

@@ -3,6 +3,13 @@ build/
 dist/
 *.spec
 
+# Ignore real configs
+Config/*.json
+
+# Allow template + graph api config
+!Config/*.template.json
+!Config/graph_apis.json
+
 # Runtime data
 logs/
 output/
