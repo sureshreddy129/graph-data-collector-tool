@@ -2,6 +2,9 @@
 build/
 dist/
 *.spec
+# Ignore graph_data_collector build
+graph-data-collector-v1.0
+graph-data-collector-v1.0.zip
 
 # Ignore real configs
 Config/*.json
