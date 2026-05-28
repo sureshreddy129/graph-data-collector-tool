@@ -112,7 +112,18 @@ class DataFetchExecutor:
                     self._ui_clear_checkbox(api_vars, api_name)
                     any_api_fetched = True
                     continue
+                if api.get("type") == "teams_powershell_ddi":
+                    self._ui_progress(
+                        "Fetching Teams DDI numbers...",
+                        delay=0.1
+                    )
 
+                    self.teams.fetch_ddis()
+
+                    self._ui_clear_checkbox(api_vars, api_name)
+
+                    any_api_fetched = True
+                    continue
                 # ---------- Graph API ----------
                 user_inputs = self._ui_call_and_wait(
                     input_provider,

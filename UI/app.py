@@ -244,9 +244,24 @@ class GraphDataCollectorApp:
 
 
     def _load_graph_apis(self):
-        graph_apis_path = resource_path("config/graph_apis.json")
-        with open(graph_apis_path) as f:
-            self.graph_apis = json.load(f)
+        # graph_apis_path = resource_path("config/graph_apis.json")
+        # with open(graph_apis_path) as f:
+        #     self.graph_apis = json.load(f)
+        try:
+            path = resource_path("Config/graph_apis.json")
+            print("Loading graph APIs from:", path)
+
+            with open(path, "r", encoding="utf-8") as f:
+                self.graph_apis = json.load(f)
+
+            print(self.graph_apis.keys())
+
+        except Exception as e:
+            messagebox.showerror(
+                "Config Error",
+                f"Failed to load graph_apis.json\n{e}"
+            )
+            self.graph_apis = {}
 
     def _init_clients_and_executor(self):
         self.graph_client = GraphClient(

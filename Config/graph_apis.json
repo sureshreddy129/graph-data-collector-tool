@@ -122,5 +122,9 @@
     "type": "teams_powershell",
     "auth": "delegated_refresh",
     "description": "Fetch Teams Call Queues and Auto Attendants using delegated refresh token"
-   }
+   },
+  "Get Teams DDIs": {
+  "type": "teams_powershell_ddi",
+  "filename": "DDIs.json"
+}
 }

@@ -153,3 +153,49 @@ class TeamsClient:
             "• Teams Administrator"
         )
 
+    def fetch_ddis(self):
+        self.progress_cb("Getting Graph token...")
+        graph_token = self.tokens.get_graph_token_from_refresh()
+
+        self.progress_cb("Getting Teams token...")
+        teams_token = self.tokens.get_teams_token_from_refresh()
+
+        self.progress_cb("Connecting to Microsoft Teams...")
+
+        output_dir = os.path.join("Output", self.tenant_name)
+
+        ps_script = resource_path("PowerShell/fetch_ddis.ps1")
+
+        cmd = [
+            "powershell",
+            "-ExecutionPolicy", "Bypass",
+            "-File", ps_script,
+            "-GraphToken", graph_token,
+            "-TeamsToken", teams_token,
+            "-OutputPath", output_dir
+        ]
+
+        creation_flags = 0
+        startupinfo = None
+
+        if sys.platform == "win32":
+            creation_flags = subprocess.CREATE_NO_WINDOW
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        if self.progress_cb:
+            self.progress_cb("Fetching DDIs…")
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            creationflags=creation_flags,
+            startupinfo=startupinfo
+        )
+
+        if self.log:
+            self.log.info(result.stdout)
+
+        if result.returncode != 0:
+            if self.log:
+                self.log.error(result.stderr)
+            raise RuntimeError("DDI PowerShell execution failed")
